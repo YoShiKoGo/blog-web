@@ -1,5 +1,10 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
+
+  env: {
+    // 认证客户端URL，process.env.NODE_ENV
+    authURL: process.env.NODE_ENV === 'dev' ? '//localhost:7000' : '//login.mengxuegu.com'
+  },
+
   head: {
     title: '博客社区门户网',
     htmlAttrs: {
@@ -15,7 +20,6 @@ export default {
     ]
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     //  全局引入样式
     // 针对element-ui 组件的各种样式
@@ -28,21 +32,19 @@ export default {
     '@assets/css/global.css'
   ],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/element-ui.js'
+    '~/plugins/element-ui.js',
+    '~/plugins/interceptor.js'
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    'cookie-universal-nuxt', // 针对服务端操作cookie
   ],
 
   axios:  {
@@ -57,7 +59,6 @@ export default {
     }
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     //  将位于 node_modules  目录下的element-ui导出
     transpile: [/^element-ui/],

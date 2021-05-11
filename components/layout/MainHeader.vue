@@ -23,19 +23,19 @@
           <el-col class="nav-right" :xs="18" :sm="18" :md="8">
             <div class="u-nav-sign">
               <el-button type="text">管理后台</el-button>
-              <el-button type="text">登录</el-button>
-              <el-button type="primary" size="small" round>注册</el-button>
+              <el-button v-if="!userInfo" type="text" @click="$store.dispatch('LoginPage')">登录</el-button>
+              <el-button v-if="!userInfo" type="primary" @click="$store.dispatch('LoginPage')" size="small" round>注册</el-button>
             </div>
             <el-dropdown @command="handleCommand">
               <div class="el-dropdown-link">
-                <el-avatar icon="el-icon-user-solid">
+                <el-avatar icon="el-icon-user-solid" :src="userInfo ? userInfo.imageUrl : null">
                 </el-avatar>
               </div>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="article">写文章</el-dropdown-item>
                 <el-dropdown-item command="question">提问题</el-dropdown-item>
                 <el-dropdown-item command="user">我的主页</el-dropdown-item>
-                <el-dropdown-item command="logout">退出</el-dropdown-item>
+                <el-dropdown-item v-if="userInfo" command="logout">退出</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </el-col>
@@ -46,8 +46,31 @@
 
 <script>
 export default {
+  computed: {
+    userInfo() {
+      return this.$store.state.userInfo
+    }
+  },
   methods: {
     handleCommand(command) {
+      if(! this.userInfo) {
+        // 没有登录，跳转登录页
+        return this.$store.dispatch('LoginPage')
+      }
+      switch (command){
+        case 'article':
+          // 以新窗口打开编辑文章窗口
+          let routeData = this.$router.resolve('/article/edit')
+          window.open(routeData.href, '_blank')
+          break;
+        case 'question':
+          // 以新窗口打开编辑问题窗口
+          routeData = this.$router.resolve('/question/edit')
+          window.open(routeData.href, '_blank')
+          break;
+        default:
+          break;
+      }
       this.$message('点击了' + command);
     }
   }
