@@ -34,7 +34,8 @@ export default {
 
   plugins: [
     '~/plugins/element-ui.js',
-    '~/plugins/interceptor.js'
+    '~/plugins/interceptor.js',
+    '~/api/article.js',
   ],
 
   components: true,
