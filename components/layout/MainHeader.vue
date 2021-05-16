@@ -68,6 +68,10 @@ export default {
           routeData = this.$router.resolve('/question/edit')
           window.open(routeData.href, '_blank')
           break;
+        case 'logout':
+          // 触发UserLogout action
+          this.$store.dispatch('UserLogout')
+          break;
         default:
           break;
       }

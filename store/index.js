@@ -49,6 +49,16 @@ const actions = {
     window.location.href =
       `${process.env.authURL}?redirectURL=${window.location.href}`
   },
+
+  // 登出
+  UserLogout({commit}) {
+    // 重置状态
+    commit('RESET_USER_STATE')
+    // 跳转认证客户端
+    window.location.href = `${process.env.authURL}/logout?redirectURL=${window.location.href}`
+
+  }
+
 }
 
 // 导出

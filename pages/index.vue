@@ -10,8 +10,12 @@
 <script>
 export default {
 
-  asyncData() {
-    console.log('process.env.NODE_ENV', process.env.authURL)
+  async asyncData({$axios}) {
+    // console.log('process.env.NODE_ENV', process.env.authURL)
+    // 测试test
+    console.log('测试')
+    const resp = await $axios.$get('/test');
+    // console.log(resp)
   },
 
 }

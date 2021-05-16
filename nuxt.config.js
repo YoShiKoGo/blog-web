@@ -2,7 +2,7 @@ export default {
 
   env: {
     // 认证客户端URL，process.env.NODE_ENV
-    authURL: process.env.NODE_ENV === 'dev' ? '//localhost:7000' : '//login.mengxuegu.com'
+    authURL: process.env.NODE_ENV === 'dev' ? 'http://localhost:7000' : '//login.mengxuegu.com'
   },
 
   head: {
