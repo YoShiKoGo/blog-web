@@ -98,7 +98,7 @@ export default {
   .g-header {
     width: 100%;
     height: 60px;
-    border-top: 3px solid #345dc2;
+    border-top: 3px solid #372F2F;
     background-color: #fafafa;
     box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
     z-index: 1501;

@@ -4,7 +4,7 @@
   <div class="mxg-footer">
     <div class="warp">
       <!-- <div class="top-line"></div> -->
-      <el-divider>梦学谷 — 陪你学习,伴你梦想</el-divider>
+      <el-divider>稳健博客 — 陪你学习,伴你梦想</el-divider>
       <div class="footer-link">
         <a rel="nofollow" target="_blank" href="/about/">关于我们</a><span>/</span>
         <a rel="nofollow" target="_blank" href="/job/">人才招聘</a><span>/</span>
@@ -12,7 +12,7 @@
         <a rel="nofollow" target="_blank" href="/question/">常见问题</a>
       </div>
       <div class="footer-information-box">
-        <p>Copyright &copy;2020 mengxuegu.com &nbsp;All Rights Reserved&nbsp;
+        <p>Copyright &copy;2020 wen.com &nbsp;All Rights Reserved&nbsp;
           <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow"> 赣ICP备16666888号-99</a>
         </p>
       </div>
