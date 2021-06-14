@@ -93,6 +93,11 @@ export default {
   validate({params}) {
     return /^\d+$/.test(params.id)
   },
+  head(){
+    return {
+      title: this.data.title // 浏览器中的标题
+    }
+  },
   data() {
     return {
       // 是否点赞
@@ -100,7 +105,7 @@ export default {
       // 当前登录用户id
       userId: this.$store.state.userInfo && this.$store.state.userInfo.uid,
       // 当前用户登录头像
-      userImage: this.$store.state.userInfo && this.$store.state.userInfo.userImage,
+      userImage: this.$store.state.userInfo && this.$store.state.userInfo.imageUrl,
       commentList: []
     }
   },
@@ -130,14 +135,41 @@ export default {
     // 发布评论
     doSend(content) {
       console.log('发布评论',content)
+      this.doChildSend(content)
+
     },
     // 回复评论
-    doChildSend(content, parentId) {
-      console.log('回复评论(回复内容,父评论id',content, parentId)
+    doChildSend(content, parentId="-1") {
+      console.log('回复评论(回复内容,父评论id)',content, parentId)
+      const data = {
+        content,
+        parentId,
+        articleId: this.$route.params.id,
+        userId: this.userId,
+        userImage: this.userImage,
+        nickName: this.$store.state.userInfo && this.$store.state.userInfo.nickName
+      }
+      this.$addComment(data).then(response=> {
+        // 新增评论成功
+        if(20000 === response.code){
+          // 刷新评论列表
+          this.refreshComment()
+        }
+      })
     },
     // 删除评论
-    doRemove(id) {
+    async doRemove(id) {
       console.log('删除评论id=', id)
+      const {code} = await this.$deleteComment(id)
+      if(20000 === code){
+        // 删除成功,刷新
+        this.refreshComment()
+      }
+    },
+    // 刷新评论
+    async refreshComment(){
+      const {data} = await this.$getCommentListByArticleId(this.$route.params.id)
+      this.commentList = data
     }
   },
 
@@ -158,7 +190,10 @@ export default {
         app.$cookies.set(`article-view-${params.id}`,true)
       }
     }
-    return {data}
+
+    // 通过文章id查询评论列表信息
+    const {data: commentList} = await app.$getCommentListByArticleId(params.id)
+    return {data, commentList}
   }
 }
 </script>

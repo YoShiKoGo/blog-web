@@ -18,4 +18,13 @@ export default ({$axios}, inject) =>{
   // 更新点赞数
   inject('updateArticleThumb', (articleId, count) => $axios.$put(`/article/article/thumb/${articleId}/${count}`))
 
+  // 通过文章id查询评论列表
+  inject('getCommentListByArticleId', articleId => $axios.$get(`/article/api/comment/list/${articleId}`))
+
+  // 新增评论
+  inject('addComment', data => $axios.$post(`/article/comment`, data))
+
+  // 删除评论
+  inject('deleteComment', id => $axios.$delete(`/article/comment/${id}`))
+
 }
