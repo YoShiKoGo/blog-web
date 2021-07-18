@@ -17,6 +17,11 @@
                   <i class="el-icon-thumb"></i> {{ data.thumhup }}
                   <i class="el-icon-view"></i> {{ data.viewCount }}
                 </span>
+                <nuxt-link
+                  v-if="$store.state.userInfo && $store.state.userInfo.uid === data.userId"
+                  :to="{path: '/article/edit', query:{id: data.id}}" class="nickname">
+                  &nbsp;&nbsp; 编辑
+                </nuxt-link>
               </div>
               <el-tag style="margin-left: 5px" v-for="item in data.labelList" :key="item.id" size="small">{{ item.name }}</el-tag>
             </div>

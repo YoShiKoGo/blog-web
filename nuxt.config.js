@@ -29,13 +29,17 @@ export default {
     // 布局样式
     'element-ui/lib/theme-chalk/display.css',
     // 项目自定义全局样式
-    '@assets/css/global.css'
+    '@assets/css/global.css',
+    // mavon-editor编辑器使用的样式
+    'mavon-editor/dist/css/index.css'
   ],
 
   plugins: [
     '~/plugins/element-ui.js',
     '~/plugins/interceptor.js',
+    {src: '~/plugins/vue-mavon-editor.js', mode: 'client'}, // 只能在客户端使用，用到了window
     '~/api/article.js',
+    '~/api/common.js',
   ],
 
   components: true,

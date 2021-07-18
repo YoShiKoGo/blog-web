@@ -1,3 +1,5 @@
+import da from "element-ui/src/locale/lang/da";
+
 export default ({$axios}, inject) =>{
 
   // 查询技术频道
@@ -26,5 +28,14 @@ export default ({$axios}, inject) =>{
 
   // 删除评论
   inject('deleteComment', id => $axios.$delete(`/article/comment/${id}`))
+
+  // 获取所有正常状态的分类及标签
+  inject('getCategoryAndLabel', id => $axios.$get(`/article/api/category/label/list`))
+
+  // 新增文章
+  inject('addArticle', data => $axios.$post(`/article/article`, data))
+
+  // 修改文章
+  inject('updateArticle', data => $axios.$put(`/article/article`, data))
 
 }
