@@ -3,8 +3,9 @@
     <div class="m-nav">
         <el-row type="flex" justify="space-between">
           <el-col :xs="4" :sm="4" :md="4">
-            <nuxt-link to="/">
-              <img src="@/assets/images/logo.png" height="40px">
+            <nuxt-link to="/" style="display: flex; justify-content: space-around; align-items: flex-start">
+              <img src="@/assets/images/logo.png" height="40px" style="">
+              <p style="font-size: 15px">麻婆豆腐的博客</p>
             </nuxt-link>
           </el-col>
           <!--    <768px或<992px 占用格子设置为0   :xs="0" :sm="0"   -->

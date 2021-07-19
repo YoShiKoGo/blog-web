@@ -40,6 +40,7 @@ export default {
     {src: '~/plugins/vue-mavon-editor.js', mode: 'client'}, // 只能在客户端使用，用到了window
     '~/api/article.js',
     '~/api/common.js',
+    '~/api/question.js',
   ],
 
   components: true,
