@@ -245,13 +245,12 @@
         })
       },
 
-      //
+      // 删除图片
       delContentImg(urlAndFileArr){
         const fileUrl = urlAndFileArr[0] //图片url
         const file = urlAndFileArr[1]  // File对象
         console.log('删除内容图片',fileUrl,file)
         this.$deleteImg(fileUrl)
-
       }
 
     },
